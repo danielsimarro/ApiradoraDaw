@@ -22,7 +22,7 @@ public class Pruebas {
         
         double aspiracion = 1.5;
         double totalcocina=0;
-        int cocina=10;
+        double cocina=10;
 
         //int cocina = aleatorio.nextInt(100) + 1;
         //System.out.println("Los metros de la cocina son " + cocina);
@@ -54,18 +54,25 @@ public class Pruebas {
                 + "1.-Modo completo\n"
                 + "2.-Modo dependencias\n");
         int eleccion1 = Integer.parseInt(eleccion1S);
+        
+        double to;
 
         switch (eleccion1) {
             case 1:
-                for(int i=0;i<cocina;i++){
+                to=(carga2)-(aspiracion*cocina);
+                
+                if(to>3){
+                  for(int i=0;i<cocina;i++){
                     carga2-=aspiracion;
-                    if(carga2<3){
-                        i--;
-                        System.out.println("La carga es" + carga2 + " y a limpiado" + (i+1));
-                    }
+                 
+                       
+                    
                 }
-                totalcocina=carga2;
-                System.out.println("La carga es de un " + totalcocina);
+                System.out.println("Queda " + carga2 + "% de bateria");
+                }else{
+                    System.out.println("No se puede aspirara la cocina");
+                }
+                
                 break;
 
             case 2:
