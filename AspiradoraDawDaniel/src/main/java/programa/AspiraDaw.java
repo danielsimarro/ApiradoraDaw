@@ -117,6 +117,7 @@ public class AspiraDaw {
 
         //Declararemos todas las variables que se usaran en el menu
         final double aspiracion = 1.5;
+        double condicion= 3.0;
         
         //Variables utilizdas en el case 1 case 1
         double calculadorcocina; // Calculara si la bateria es suficiente para realizar la cocina
@@ -126,6 +127,8 @@ public class AspiraDaw {
         double calculadordor2; // Calculara si la bateria es suficiente para realizar el dormitorio2
         
         int contadordependencias = 0;//Este contador sirve para contar las dependencias
+        
+        
 
         String eleccion1S;
 
@@ -139,15 +142,14 @@ public class AspiraDaw {
 
                 switch (eleccion1) {
                     case 1:
-                        calculadorcocina = (bateria1) - (aspiracion * cocina);
+                        calculadorcocina = (bateria1) - (aspiracion * cocina); // 100 - 15= 85
 
-                        if (calculadorcocina > 3) {
+                        if (calculadorcocina > condicion ) {
                             for (int i = 0; i <= cocina; i++) {
-                                bateria1 -= aspiracion;
-                                if(bateria1<3){
-                                    
-                                }
+                                bateria1 -= aspiracion;//85-1.5
+                                
                             }
+                            
                             contadordependencias++;
                             JOptionPane.showMessageDialog(null, "Se ha aspirado la cocina, queda " + bateria1 + "% de batería");
 
@@ -159,7 +161,7 @@ public class AspiraDaw {
 
                         calculadorsalon = (bateria1) - (aspiracion * salon);
                         
-                        if (calculadorsalon > 3) {
+                        if (calculadorsalon > condicion) {
                             for (int i = 0; i <= salon; i++) {
                                 bateria1 -= aspiracion;
                             }
@@ -175,7 +177,7 @@ public class AspiraDaw {
                         
                         calculadorbano = (bateria1) - (aspiracion * bano);
                         
-                        if (calculadorsalon > 3) {
+                        if (calculadorsalon > condicion) {
                             for (int i = 0; i <= bano; i++) {
                                 bateria1 -= aspiracion;
                             }
@@ -191,7 +193,7 @@ public class AspiraDaw {
                         
                         calculadordor1 = (bateria1) - (aspiracion * dormitorio1);
                         
-                        if (calculadordor1 > 3) {
+                        if (calculadordor1 > condicion) {
                             for (int i = 0; i <= dormitorio1; i++) {
                                 bateria1 -= aspiracion;
                             }
@@ -207,7 +209,7 @@ public class AspiraDaw {
                         
                         calculadordor2 = (bateria1) - (aspiracion * dormitorio2);
                         
-                        if (calculadordor2 > 3) {
+                        if (calculadordor2 > condicion) {
                             for (int i = 0; i <= dormitorio2; i++) {
                                 bateria1 -= aspiracion;
                             }
