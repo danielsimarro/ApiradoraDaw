@@ -47,6 +47,7 @@ public class AspiraDaw {
 
         }
 
+        //Posteriormente el usuario le asignara los datos de la configuración del sistema 
         JOptionPane.showMessageDialog(null, "Bienvenido a nuestra app, lo siguiente sera configurar el sistema");
 
         String cocinaS, salonS, banoS, dormitorio1S, dormitorio2S;
@@ -103,16 +104,15 @@ public class AspiraDaw {
 
         //------------------------------------------------------------------------------------------
         //Aqui realizaremos la configuración principal de la aplicación
-        //
-        //
         //Declararemos todas las variables que se usaran en varios menus
         final double aspiracion = 1.5;
         final double fregado = 2.25;
         final double condicion = 3.0;
+        String posicion="base de carga";
         boolean repetir = true;//Es el bucle del menu general
 
-        //Variables utilizdas en el case 1 case 1
-        boolean repetiraspiracion = true;
+       
+        boolean repetiraspiracion = true;//Es el bucle de la aspiración
         double calculadorcocina; // Calculara si la bateria es suficiente para realizar la cocina
         double calculadorbano; // Calculara si la bateria es suficiente para realizar el baño
         double calculadorsalon; // Calculara si la bateria es suficiente para realizar el salon
@@ -120,32 +120,17 @@ public class AspiraDaw {
         double calculadordor2; // Calculara si la bateria es suficiente para realizar el dormitorio2
         int contadordependencias = 0;//Este contador sirve para contar las dependencias
 
-        //Variables utilizadas en el case 1 case2
-        double dcalculadorcocina; // Calculara si la bateria es suficiente para realizar la cocina
-        double dcalculadorbano; // Calculara si la bateria es suficiente para realizar el baño
-        double dcalculadorsalon; // Calculara si la bateria es suficiente para realizar el salon
-        double dcalculadordor1; // Calculara si la bateria es suficiente para realizar el dormitorio 1
-        double dcalculadordor2; // Calculara si la bateria es suficiente para realizar el dormitorio2
+        
+        
         String elecciondependencias1;//Es para elegir la dependencia que quere limpiar
-        boolean repetirmododependencia = true;
+        boolean repetirmododependencia = true;//Es el bucle del modo dependencia de aspiración
 
-        //Variables utilizdas en el case 2 case 1
-        boolean repetiraspiracionfreagado = true;
-        double calculadorcocinaf; // Calculara si la bateria es suficiente para realizar la cocina
-        double calculadorbanof; // Calculara si la bateria es suficiente para realizar el baño
-        double calculadorsalonf; // Calculara si la bateria es suficiente para realizar el salon
-        double calculadordor1f; // Calculara si la bateria es suficiente para realizar el dormitorio 1
-        double calculadordor2f; // Calculara si la bateria es suficiente para realizar el dormitorio2
-        int contadordependenciasf = 0;//Este contador sirve para contar las dependencias
-
-        //Variables utilizadas en el case 1 case2
-        double dcalculadorcocinaf; // Calculara si la bateria es suficiente para realizar la cocina
-        double dcalculadorbanof; // Calculara si la bateria es suficiente para realizar el baño
-        double dcalculadorsalonf; // Calculara si la bateria es suficiente para realizar el salon
-        double dcalculadordor1f; // Calculara si la bateria es suficiente para realizar el dormitorio 1
-        double dcalculadordor2f; // Calculara si la bateria es suficiente para realizar el dormitorio2
+        boolean repetiraspiracionfreagado = true;//Es el bucle de aspiración y fregado
+        
+       
+        
         String elecciondependenciasf;//Es para elegir la dependencia que quere limpiar
-        boolean repetirmododependenciaf = true;
+        boolean repetirmododependenciaf = true;//Es el bucle de la dependencias de fregado
 
         do {
             String eleccionS;
@@ -171,6 +156,9 @@ public class AspiraDaw {
 
                         switch (eleccionaspiracion1) {
                             case 1:
+                                contadordependencias = 0;
+                                
+                                
                                 calculadorcocina = (bateria) - (aspiracion * cocina);
 
                                 if (calculadorcocina > condicion) {
@@ -178,7 +166,7 @@ public class AspiraDaw {
                                         bateria -= aspiracion;//50
 
                                     }
-
+                                    posicion = "cocina";
                                     contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado la cocina, queda " + bateria + "% de batería");
 
@@ -194,6 +182,7 @@ public class AspiraDaw {
                                     for (int i = 0; i < salon; i++) {
                                         bateria -= aspiracion;
                                     }
+                                    posicion = "salon";
                                     contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado el salon, queda " + bateria + "% de batería");
 
@@ -210,6 +199,7 @@ public class AspiraDaw {
                                     for (int i = 0; i < bano; i++) {
                                         bateria -= aspiracion;
                                     }
+                                    posicion = "baño";
                                     contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado el baño, queda " + bateria + "% de batería");
 
@@ -226,6 +216,7 @@ public class AspiraDaw {
                                     for (int i = 0; i < dormitorio1; i++) {
                                         bateria -= aspiracion;
                                     }
+                                    posicion = "dormitorio 1";
                                     contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado el dormitorio 1, queda " + bateria + "% de batería");
 
@@ -242,6 +233,7 @@ public class AspiraDaw {
                                     for (int i = 0; i < dormitorio2; i++) {
                                         bateria -= aspiracion;
                                     }
+                                    posicion = "dormitorio 2";
                                     contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado el dormitorio 2, queda " + bateria + "% de batería");
 
@@ -269,55 +261,60 @@ public class AspiraDaw {
 
                                     switch (elecciondependencia1) {
                                         case 1:
-                                            dcalculadorcocina = (bateria) - (aspiracion * cocina);
-                                            if (dcalculadorcocina > condicion) {
+                                            calculadorcocina = (bateria) - (aspiracion * cocina);
+                                            if (calculadorcocina > condicion) {
                                                 for (int i = 0; i < cocina; i++) {
                                                     bateria -= aspiracion;
                                                 }
+                                                posicion = "cocina";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado la cocina, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar la cocina ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 2:
-                                            dcalculadorsalon = (bateria) - (aspiracion * salon);
-                                            if (dcalculadorsalon > condicion) {
+                                            calculadorsalon = (bateria) - (aspiracion * salon);
+                                            if (calculadorsalon > condicion) {
                                                 for (int i = 0; i < salon; i++) {
                                                     bateria -= aspiracion;
                                                 }
+                                                posicion = "salón";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado el salon, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar el salón ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 3:
-                                            dcalculadorbano = (bateria) - (aspiracion * bano);
-                                            if (dcalculadorbano > condicion) {
+                                            calculadorbano = (bateria) - (aspiracion * bano);
+                                            if (calculadorbano > condicion) {
                                                 for (int i = 0; i < bano; i++) {
                                                     bateria -= aspiracion;
                                                 }
+                                                posicion = "baño";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado el baño, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar el baño ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 4:
-                                            dcalculadordor1 = (bateria) - (aspiracion * dormitorio1);
-                                            if (dcalculadordor1 > condicion) {
+                                            calculadordor1 = (bateria) - (aspiracion * dormitorio1);
+                                            if (calculadordor1 > condicion) {
                                                 for (int i = 0; i < dormitorio1; i++) {
                                                     bateria -= aspiracion;
                                                 }
+                                                posicion = "dormitorio 1";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado el dormitorio 1, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar el dormitorio 1 ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 5:
-                                            dcalculadordor2 = (bateria) - (aspiracion * dormitorio2);
-                                            if (dcalculadordor2 > condicion) {
+                                            calculadordor2 = (bateria) - (aspiracion * dormitorio2);
+                                            if (calculadordor2 > condicion) {
                                                 for (int i = 0; i < dormitorio2; i++) {
                                                     bateria -= aspiracion;
                                                 }
+                                                posicion = "dormitorio 2";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado el dormitorio 2, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar el dormitorio 2 ya que no tiene suficiente batería");
@@ -350,15 +347,17 @@ public class AspiraDaw {
 
                         switch (eleccionfregado1) {
                             case 1:
-                                calculadorcocinaf = (bateria) - (fregado * cocina);
+                                contadordependencias=0;
+                                
+                                calculadorcocina = (bateria) - (fregado * cocina);
 
-                                if (calculadorcocinaf > condicion) {
+                                if (calculadorcocina > condicion) {
                                     for (int i = 0; i < cocina; i++) {
                                         bateria -= fregado;//50
 
                                     }
-
-                                    contadordependenciasf++;
+                                    posicion = "cocina";
+                                    contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado la cocina, queda " + bateria + "% de batería");
 
                                 } else {
@@ -367,66 +366,70 @@ public class AspiraDaw {
 
                                 }
 
-                                calculadorsalonf = (bateria) - (fregado * salon);
+                                calculadorsalon = (bateria) - (fregado * salon);
 
-                                if (calculadorsalonf > condicion) {
+                                if (calculadorsalon > condicion) {
                                     for (int i = 0; i < salon; i++) {
                                         bateria -= fregado;
                                     }
-                                    contadordependenciasf++;
+                                    posicion = "salon";
+                                    contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el salon, queda " + bateria + "% de batería");
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No se a podido aspirar y fregar el salon, ya que no tiene batería suficiente\n"
-                                            + "El numero de dependencias aspiradas y fregadas es " + contadordependenciasf + " que corresponde a la cocina");
+                                            + "El numero de dependencias aspiradas y fregadas es " + contadordependencias + " que corresponde a la cocina");
                                     break;
 
                                 }
 
-                                calculadorbanof = (bateria) - (fregado * bano);
+                                calculadorbano = (bateria) - (fregado * bano);
 
-                                if (calculadorbanof > condicion) {
+                                if (calculadorbano > condicion) {
                                     for (int i = 0; i < bano; i++) {
                                         bateria -= fregado;
                                     }
-                                    contadordependenciasf++;
+                                    posicion = "baño";
+                                    contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el baño, queda " + bateria + "% de batería");
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No se a podido aspirar y freagar el baño, ya que no tiene batería suficiente\n"
-                                            + "El numero de dependencias aspiradas y fregadas es " + contadordependenciasf + " que corresponde a la cocina y salon");
+                                            + "El numero de dependencias aspiradas y fregadas es " + contadordependencias + " que corresponde a la cocina y salon");
                                     break;
 
                                 }
 
-                                calculadordor1f = (bateria) - (fregado * dormitorio1);
+                                calculadordor1 = (bateria) - (fregado * dormitorio1);
 
-                                if (calculadordor1f > condicion) {
+                                if (calculadordor1 > condicion) {
                                     for (int i = 0; i < dormitorio1; i++) {
                                         bateria -= fregado;
                                     }
-                                    contadordependenciasf++;
+                                    posicion = "dormitorio 1";
+                                    contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado y freagado el dormitorio 1, queda " + bateria + "% de batería");
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No se a podido aspirar y freagar el dormitorio 1, ya que no tiene batería suficiente\n"
-                                            + "El numero de dependencias aspiradas y freagadas es " + contadordependenciasf + " que corresponde a la cocina, salon y baño");
+                                            + "El numero de dependencias aspiradas y freagadas es " + contadordependencias + " que corresponde a la cocina, salon y baño");
                                     break;
 
                                 }
 
-                                calculadordor2f = (bateria) - (fregado * dormitorio2);
+                                calculadordor2 = (bateria) - (fregado * dormitorio2);
 
-                                if (calculadordor2f > condicion) {
+                                if (calculadordor2 > condicion) {
                                     for (int i = 0; i < dormitorio2; i++) {
                                         bateria -= fregado;
                                     }
-                                    contadordependenciasf++;
+                                    posicion = "dormitorio 2";
+                                    contadordependencias++;
                                     JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el dormitorio 2, queda " + bateria + "% de batería");
 
                                 } else {
                                     JOptionPane.showMessageDialog(null, "No se a podido aspirar y fregar el dormitorio 2, ya que no tiene batería suficiente\n"
-                                            + "El numero de dependencias aspiradas y freagadas es " + contadordependenciasf + " que corresponde a la cocina, salon, baño y dormitorio 1");
+                                            + "El numero de dependencias aspiradas y freagadas es " + contadordependencias + " que corresponde a la cocina, salon, baño y dormitorio 1");
                                     break;
 
                                 }
@@ -447,55 +450,60 @@ public class AspiraDaw {
 
                                     switch (elecciondependenciaf) {
                                         case 1:
-                                            dcalculadorcocinaf = (bateria) - (fregado * cocina);
-                                            if (dcalculadorcocinaf > condicion) {
+                                            calculadorcocina = (bateria) - (fregado * cocina);
+                                            if (calculadorcocina > condicion) {
                                                 for (int i = 0; i < cocina; i++) {
                                                     bateria -= fregado;
                                                 }
+                                                posicion = "cocina";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado la cocina, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar y fregar la cocina ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 2:
-                                            dcalculadorsalonf = (bateria) - (fregado * salon);
-                                            if (dcalculadorsalonf > condicion) {
+                                            calculadorsalon = (bateria) - (fregado * salon);
+                                            if (calculadorsalon > condicion) {
                                                 for (int i = 0; i < salon; i++) {
                                                     bateria -= fregado;
                                                 }
+                                                posicion = "salon";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el salon, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar y fregar el salón ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 3:
-                                            dcalculadorbanof = (bateria) - (fregado * bano);
-                                            if (dcalculadorbanof > condicion) {
+                                            calculadorbano = (bateria) - (fregado * bano);
+                                            if (calculadorbano > condicion) {
                                                 for (int i = 0; i < bano; i++) {
                                                     bateria -= fregado;
                                                 }
+                                                posicion = "baño";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el baño, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar y fregar el baño ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 4:
-                                            dcalculadordor1f = (bateria) - (fregado * dormitorio1);
-                                            if (dcalculadordor1f > condicion) {
+                                            calculadordor1 = (bateria) - (fregado * dormitorio1);
+                                            if (calculadordor1 > condicion) {
                                                 for (int i = 0; i < dormitorio1; i++) {
                                                     bateria -= fregado;
                                                 }
+                                                posicion = "dormitorio 1";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el dormitorio 1, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar y fregar el dormitorio 1 ya que no tiene suficiente batería");
                                             }
                                             break;
                                         case 5:
-                                            dcalculadordor2f = (bateria) - (fregado * dormitorio2);
-                                            if (dcalculadordor2f > condicion) {
+                                            calculadordor2 = (bateria) - (fregado * dormitorio2);
+                                            if (calculadordor2 > condicion) {
                                                 for (int i = 0; i < dormitorio2; i++) {
                                                     bateria -= fregado;
                                                 }
+                                                posicion = "dormitorio 2";
                                                 JOptionPane.showMessageDialog(null, "Se ha aspirado y fregado el dormitorio 2, queda " + bateria + "% de batería");
                                             } else {
                                                 JOptionPane.showMessageDialog(null, "No se ha podido aspirar y fregar el dormitorio 2 ya que no tiene suficiente batería");
@@ -523,6 +531,7 @@ public class AspiraDaw {
 
                     JOptionPane.showMessageDialog(null, "Hora y fecha: " + hourdateFormat.format(date) + "\n\n"
                             + "La bateria actual es de " + bateria + " %\n\n"
+                            + "La aspiradora se encuantra en " + posicion + "\n\n"
                             + "La cocina tiene " + cocina + " metros cuadrados\n"
                             + "El salón tiene " + salon + " metros cuadrados\n"
                             + "El baño tiene " + bano + " metros cuadrados\n"
